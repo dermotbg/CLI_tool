@@ -1,11 +1,7 @@
 #!/usr/bin/env node
-// const arg = require('arg');
-// const chalk = require('chalk');
-
-import chalk from "chalk";
-import arg from "arg";
-import { packageUpSync } from 'package-up';
-
+const arg = require('arg');
+const chalk = require('chalk');
+const pkgUp = require('pkg-up')
 
 try {
   const args = arg({
@@ -14,7 +10,7 @@ try {
   });
   
   if(args['--start']){
-    const pkgPath = packageUpSync({ cwd: process.cwd() });
+    const pkgPath = pkgUp.sync({ cwd: process.cwd() });
     const pkg = require(pkgPath);
     if (pkg.tool){
       console.log('Found Configuration', pkg.tool)
